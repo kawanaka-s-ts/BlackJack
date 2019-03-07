@@ -1,4 +1,17 @@
 class UserBase
+  attr_accessor :hand_cards
+  def initialize
+    @hand_cards = []
+  end
+
+  # 山札からカードを引く
+  def draw(deck)
+    # deckの先頭の値を手札に入れる
+    hand_cards.push(deck[0])
+    # deckの先頭の値を削除する(手札に入ったので)
+    deck.delete(deck[0])
+  end
+
   # 手札を表示するメソッド
   def show_card(hand_cards)
     # hand_card[0]の値によって条件分岐

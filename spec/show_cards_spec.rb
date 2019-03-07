@@ -3,6 +3,14 @@ require "spec_helper"
 
 describe UserBase do
   let(:user_base){UserBase.new}
+
+  describe "#draw" do
+    it "deckの先頭の数をhand_cardsに入れた後、deckからその値を削除" do
+    deck = [1, 2, 3, 4, 5, 6]
+      expect(user_base.draw(deck)).to eq 1
+    end
+  end
+
   describe "#show_cards" do
     context "渡された配列が[1, 1]の時" do
       it "1を♠、1をAに変換したものを返す" do
