@@ -6,7 +6,7 @@ class Card
   end
 
   def show_card
-    puts ("#{suit}""#{number}")
+    ("#{suit}""#{number}")
   end
 end
 
