@@ -5,8 +5,14 @@ class Card
     @number = number
   end
 
+  # カードの柄と数字を取得する
   def show_card
     ("#{suit}""#{number}")
+  end
+
+  # カードの数字を取得する
+  def show_card_number
+    number.to_i
   end
 end
 
