@@ -11,7 +11,7 @@ describe Deck do
     end
 
     it "52回Cardが作られる" do
-      deck = Deck.new
+      Deck.new
     end
   end
 
