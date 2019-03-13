@@ -3,11 +3,23 @@ require "card"
 require "spec_helper"
 
 describe Deck do
-  let(:deck){Deck.new}
   describe "#build" do
-    it "52回Cardが作られる" do
+    let(:deck) { Deck.new }
+
+    before do
       expect(Card).to receive(:new).exactly(52).times
+    end
+
+    it "52回Cardが作られる" do
       deck.build
+    end
+  end
+
+  describe "#drawCard" do
+    let(:deck) { Deck.new }
+    it "先頭の要素を取り出す" do
+      deck.instance_variable_set(:@cards, ["♠1", "♠2", "♠3"])
+      expect(deck.drawCard).to eq "♠1"
     end
   end
 end
