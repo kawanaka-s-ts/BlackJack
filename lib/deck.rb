@@ -4,6 +4,7 @@ class Deck
   attr_accessor :cards
   def initialize
     @cards = []
+    build
   end
 
   # 52枚のカードを持った山札を作成
@@ -13,7 +14,6 @@ class Deck
       # カードを作成し格納（引数に図柄と数字を渡す）
       cards << Card.new(s, n)
     end
-    cards
   end
 
   def drawCard
