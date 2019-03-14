@@ -28,4 +28,11 @@ describe UserBase do
       end
     end
   end
+
+  describe "#show_hand_cards" do
+    it "手札を表示する" do
+      user_base.instance_variable_set(:@hand_cards, [Card.new("♠", 1), Card.new("♠", 2), Card.new("♠", 12)])
+      expect(user_base.show_hand_cards).to eq ["♠A", "♠2", "♠Q"]
+    end
+  end
 end
