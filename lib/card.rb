@@ -11,8 +11,7 @@ class Card
   end
 
   # カードの数字を取得する
-  def show_card_number
-    number.to_i
+  def show_number
+    number
   end
 end
-

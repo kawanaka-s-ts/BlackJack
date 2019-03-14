@@ -18,9 +18,9 @@ class UserBase
     # 手札の要素数分、繰り返す
     hand_cards.each do |card|
       # 数字が10以下の時
-      if card.show_card_number < 10
+      if card.show_number < 10
         # そのままの数値を格納する
-        user_score.push(card.show_card_number)
+        user_score.push(card.show_number)
       # 数字が10より大きい時
       else
         # 10を格納する
