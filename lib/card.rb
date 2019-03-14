@@ -10,6 +10,11 @@ class Card
     ("#{suit}""#{number}")
   end
 
+  # カードの柄を取得する
+  def show_suit
+    suit
+  end
+
   # カードの数字を取得する
   def show_number
     number
