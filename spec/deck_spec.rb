@@ -19,7 +19,7 @@ describe Deck do
     let(:deck) { Deck.new }
     it "先頭の要素を取り出す" do
       deck.instance_variable_set(:@cards, ["♠1", "♠2", "♠3"])
-      expect(deck.drawCard).to eq "♠1"
+      expect(deck.draw_card).to eq "♠1"
     end
   end
 end
