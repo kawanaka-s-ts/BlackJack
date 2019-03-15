@@ -6,13 +6,13 @@ describe Card do
 
   describe "#show_suit" do
     it "カードの柄を表示する" do
-      expect(card.show_suit).to eq "♠"
+      expect(card.suit).to eq "♠"
     end
   end
 
   describe "#show_number" do
     it "カードの数字を表示する" do
-      expect(card.show_number).to eq 1
+      expect(card.number).to eq 1
     end
   end
 
