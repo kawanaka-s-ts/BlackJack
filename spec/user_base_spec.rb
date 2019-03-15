@@ -13,25 +13,9 @@ describe UserBase do
     end
   end
 
-  describe "#convert_score" do
-    context "カードの数字が10以上の場合" do
-      it "10として扱う" do
-        user_base.instance_variable_set(:@hand_cards, [Card.new("♠", 11)])
-        expect(user_base.convert_total_score).to eq 10
-      end
-    end
-
-    context "手札が複数ある場合" do
-      it "変換した値の合計得点を返す" do
-        user_base.instance_variable_set(:@hand_cards, [Card.new("♠", 1), Card.new("♠", 2), Card.new("♠", 12)])
-        expect(user_base.convert_total_score).to eq 13
-      end
-    end
-  end
-
   describe "#show_hand_cards" do
     it "手札を表示する" do
-      user_base.instance_variable_set(:@hand_cards, [Card.new("♠", 1), Card.new("♠", 2), Card.new("♠", 12)])
+      user_base.instance_variable_set(:@hand_cards, [Card.new("♠", "A"), Card.new("♠", "2"), Card.new("♠", "Q")])
       expect(user_base.show_hand_cards).to eq ["♠A", "♠2", "♠Q"]
     end
   end
