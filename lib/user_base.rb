@@ -40,28 +40,7 @@ class UserBase
       # カードの柄を取得
       suit = card.show_suit
       # カードの数字を取得
-      number = card.show_number
-      # numberが1の時
-      if number == 1
-        # Aを代入
-        number = "A"
-      # numberが1の時
-      elsif number == 11
-        # Aを代入
-        number = "J"
-      # numberが1の時
-      elsif number == 12
-        # Aを代入
-        number = "Q"
-      # numberが1の時
-      elsif number == 13
-        # Aを代入
-        number = "K"
-      # それ以外の時
-      else
-        # 数字そのまま
-        number
-      end
+      number = card.convert_num
       # 柄と数字を足したものを格納
       view.push("#{suit}"+"#{number}")
     end
