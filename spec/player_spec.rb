@@ -1,16 +1,15 @@
 require "player"
-require "user_base"
 require "deck"
 require "spec_helper"
 
 describe Player do
-  let(:player) { Player.new }
+  let(:player) { Player.new(Card.new("♠", "A"), Card.new("♠", "2")) }
   let(:deck) { Deck.new }
 
   describe "#player_action" do
-
     context "yが入力された時" do
       it "カードを引き、手札を表示する" do
+        player.instance_variable_set(:@hand_cards, [])
         allow(STDIN).to receive(:gets).and_return "y", "y", "n"
         expect(STDOUT).to receive(:puts).with("ドローしますか?")
         expect(STDOUT).to receive(:puts).with("ドローします")

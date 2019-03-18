@@ -7,7 +7,7 @@ require "spec_helper"
 
 describe BlackJack do
   let(:black_jack) { BlackJack.new }
-  let(:player) { Player.new }
+  let(:player) { Player.new(Card.new("♠", "A"), Card.new("♠", "2")) }
   let(:dealer) { Dealer.new }
   let(:dealer_cards) { [10, 10] }
 
