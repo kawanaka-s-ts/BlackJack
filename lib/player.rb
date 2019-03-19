@@ -9,16 +9,22 @@ class Player < UserBase
 
   # プレーヤーの動作
   def player_action(deck)
-    puts "ドローしますか?"
-    # 入力が
-    while action = STDIN.gets
-      # "nが入力されたら処理を抜ける"
+    puts "ドローしますか? y/n"
+    # 入力がある間繰り返す
+    while action = STDIN.gets.chomp
+      # nが入力されたら処理を抜ける
       break if action == "n"
-      puts "ドローします"
-      # カードを引く
-      draw(deck)
-      puts "現在の手札は#{show_hand_cards}です"
-      puts "もう一度ドローしますか?"
+      # yが入力された時
+      if action == "y"
+        puts "ドローします"
+        # カードを引く
+        draw(deck)
+        puts "現在の手札は#{show_hand_cards}です"
+        puts "もう一度ドローしますか? y/n"
+      # y,n以外の文字が入力された時
+      else
+        puts "入力は無効です、再度入力してください y/n"
+      end
     end
     puts "ドローしませんでした"
     puts "現在の手札は#{show_hand_cards}です"
