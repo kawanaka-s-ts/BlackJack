@@ -26,4 +26,9 @@ class Deck
     # 山札の先頭の要素を削除し、取り出す
     cards.shift
   end
+
+  def shuffle
+    # カードをシャッフルする
+    cards.shuffle!
+  end
 end
