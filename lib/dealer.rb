@@ -36,4 +36,13 @@ class Dealer < UserBase
     end
     score.sum
   end
+
+  # 手札の一枚目のみを表示する
+  def show_first_card
+    # cardは手札の1枚目
+    card = hand_cards[0]
+    suit = card.suit
+    rank = card.rank
+    ("#{suit}#{rank}")
+  end
 end
