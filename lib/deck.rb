@@ -1,4 +1,4 @@
-require "card"
+require_relative "card"
 
 class Deck
    # 定数SUIT_LISTに柄の一覧を代入

@@ -1,5 +1,4 @@
-require "user_base"
-require "pry"
+require_relative "user_base"
 
 class Dealer < UserBase
   attr_accessor :hand_cards
