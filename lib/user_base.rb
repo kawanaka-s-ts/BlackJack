@@ -22,5 +22,6 @@ class UserBase
       # 柄とランクを足したものを格納
       ("#{suit}#{rank}")
     end
+    .join(" , ")
   end
 end
