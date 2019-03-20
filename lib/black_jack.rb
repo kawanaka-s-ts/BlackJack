@@ -1,9 +1,9 @@
 class BlackJack
 
   # 手札カードの数字を得点に変換
-  def convert_total_score(user)
+  def total_score(cards)
     # 手札の要素を合計する
-    user.hand_cards.sum do |card|
+    cards.sum do |card|
       case card.rank
       # rankが"J", "Q", "K"の時
       when "J", "Q", "K"
@@ -23,20 +23,17 @@ class BlackJack
 
   # 勝敗判定の実装
   def decision(player, dealer)
-    player_score = convert_total_score(player)
-    dealer_score = convert_total_score(dealer)
-    # playerの手札の合計が21を超えた場合
-    if player_score > 21
-      '敗北'
-    # dealerの手札の合計が21を超えた場合
-    elsif dealer_score > 21
-      '勝利' 
-    # playerの手札の合計が相手より高い場合
-    elsif (21 - player_score) < (21 - dealer_score)
-      '勝利' 
-    # playerとdealerの手札の合計が同じ場合
-    elsif (21 - player_score) == (21 - dealer_score)
-      '引き分け'
+    player_score = total_score(player.hand_cards)
+    dealer_score = total_score(dealer.hand_cards)
+    # player_scoreとdealer_scoreをUFO演算子で比較する
+    case player_score <=> dealer_score
+    # 結果が1の時、勝利と返す
+    when 1 then "勝利"
+    # 結果が-1の時、敗北と返す
+    when -1 then "敗北"
+    # それ以外の時、引き分けと返す
+    else
+       "引き分け"
     end
   end
 end
