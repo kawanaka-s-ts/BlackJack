@@ -1,7 +1,7 @@
-require "deck"
-require "player"
-require "dealer"
-require "black_jack"
+require_relative "deck"
+require_relative "player"
+require_relative "dealer"
+require_relative "black_jack"
 
 class Game < BlackJack
   attr_accessor :deck, :player, :dealer
@@ -16,14 +16,20 @@ class Game < BlackJack
 
   def play_game
     puts "ゲームを開始します"
-    puts "プレイヤーの手札は#{player.show_hand_cards}"
-    puts "ディーラーの手札の1枚目は#{dealer.show_hand_cards}"
+    puts "プレイヤーの手札は #{player.show_hand_cards} です"
+    puts "ディーラーの手札の1枚目は #{dealer.show_first_card} です"
     puts "プレイヤーの番です"
-    player.player_action(deck)
-    puts "勝負です"
+    while player.player_action(deck)
+      break if false
+      return puts "バーストしました、敗北です" if burst?(player.hand_cards)
+    end
+    puts "勝負します"
     dealer.dealer_action(deck)
-    puts "ディーラーの手札は#{dealer.show_hand_cards}でした"
-    puts "プレイヤーの合計は #{convert_total_score(player.)} です,ディーラーの合計は #{convert_total_score(dealer)}"
+    puts "ディーラーの手札は #{dealer.show_hand_cards} でした"
+    return puts "ディーラーがバーストしました、勝利です" if burst?(dealer.hand_cards) 
+    puts "プレイヤーの合計は #{total_score(player.hand_cards)} です ディーラーの合計は #{total_score(dealer.hand_cards)}です"
     puts "#{decision(player, dealer)}です"
   end
 end
+
+Game.new.play_game
