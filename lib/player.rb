@@ -1,4 +1,4 @@
-require "user_base"
+require_relative "user_base"
 
 class Player < UserBase
   attr_accessor :hand_cards
@@ -10,24 +10,18 @@ class Player < UserBase
   # プレーヤーの動作
   def player_action(deck)
     puts "ドローしますか? y/n"
-    # 入力がある間繰り返す
-    while action = STDIN.gets.chomp
-      # nが入力されたら処理を抜ける
-      break if action == "n"
-      # yが入力された時
-      if action == "y"
-        puts "ドローします"
-        # カードを引く
-        draw(deck)
-        puts "現在の手札は#{show_hand_cards}です"
-        puts "もう一度ドローしますか? y/n"
-      # y,n以外の文字が入力された時
-      else
-        puts "入力は無効です、再度入力してください y/n"
-      end
+    action = STDIN.gets.chomp
+    if action == "y"
+      puts "ドローします"
+      draw(deck)
+      puts "現在の手札は #{show_hand_cards} です"
+      return true
+    elsif action == "n"
+      puts "ドローしませんでした"
+      return false
+    else
+      puts "無効な文字列が入力されました、再度入力してください y/n"
+      return true
     end
-    puts "ドローしませんでした"
-    puts "現在の手札は#{show_hand_cards}です"
-    hand_cards
   end
 end
