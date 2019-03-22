@@ -9,6 +9,7 @@ describe Player do
   describe "#player_action" do
     context "yが入力された時" do
       it "カードを引く" do
+        deck.instance_variable_set(:@cards, [Card.new("♠", "A")])
         player.instance_variable_set(:@hand_cards, [])
         allow(STDIN).to receive(:gets).and_return "y"
         expect(STDOUT).to receive(:puts).with("ドローしますか? y/n")

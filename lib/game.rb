@@ -8,8 +8,6 @@ class Game < BlackJack
   def initialize
     # 山札を作成
     @deck = Deck.new
-    # 山札をシャッフル
-    @deck.shuffle
     @player = Player.new(*@deck.cards.shift(2))
     @dealer = Dealer.new(*@deck.cards.shift(2))
   end
@@ -27,7 +25,7 @@ class Game < BlackJack
     dealer.dealer_action(deck)
     puts "ディーラーの手札は #{dealer.show_hand_cards} でした"
     return puts "ディーラーがバーストしました、勝利です" if burst?(dealer.hand_cards) 
-    puts "プレイヤーの合計は #{total_score(player.hand_cards)} です ディーラーの合計は #{total_score(dealer.hand_cards)}です"
+    puts "プレイヤーの合計は #{total_score(player.hand_cards)} です ディーラーの合計は #{total_score(dealer.hand_cards)} です"
     puts "#{decision(player, dealer)}です"
   end
 end

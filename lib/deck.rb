@@ -9,26 +9,14 @@ class Deck
   attr_reader :cards
 
   def initialize
-    @cards = []
-    build
-  end
-
-  # 52枚のカードを持った山札を作成
-  def build
-    # 図柄とランクを組み合わせる
-    SUIT_LIST.product(RANK_LIST) do |suit, rank|
+    @cards = SUIT_LIST.product(RANK_LIST).map do |suit, rank|
       # カードを作成し格納（引数に図柄と数字を渡す）
-      cards.push(Card.new(suit, rank))
-    end
+      (Card.new(suit, rank))
+    end.shuffle 
   end
 
   def draw_card
     # 山札の先頭の要素を削除し、取り出す
     cards.shift
-  end
-
-  def shuffle
-    # カードをシャッフルする
-    cards.shuffle!
   end
 end
