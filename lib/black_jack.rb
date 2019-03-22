@@ -61,4 +61,13 @@ class BlackJack
        "引き分け"
     end
   end
+
+  # dealerの動作
+  def dealer_action(deck, dealer)
+    cards = dealer.hand_cards
+    # dealerの得点が17を超えるまで繰り返す
+    while total_score(cards) < 17
+      dealer.draw(deck)
+    end
+  end
 end

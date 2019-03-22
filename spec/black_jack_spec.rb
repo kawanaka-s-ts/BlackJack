@@ -9,6 +9,7 @@ describe BlackJack do
   let(:black_jack) { BlackJack.new }
   let(:player) { Player.new(Card.new("♠", "A"), Card.new("♠", "2")) }
   let(:dealer) { Dealer.new(Card.new("♠", "A"), Card.new("♠", "2")) }
+  let(:deck) { Deck.new }
   let(:dealer_cards) { [10, 10] }
 
   describe "#convert_score" do
@@ -83,6 +84,20 @@ describe BlackJack do
         player.instance_variable_set(:@hand_cards, [Card.new("♠", "A")])
         dealer.instance_variable_set(:@hand_cards, [Card.new("♠", "A")])
         is_expected.to eq '引き分け'
+      end
+    end
+  end
+
+  describe "#dealer_action" do
+
+    before do
+      deck.instance_variable_set(:@cards, [Card.new("♠", "4"), Card.new("♠", "5"), Card.new("♠", "3")])
+    end
+
+    context "1枚目を引くと17になる時" do
+      it "１回のみドローする" do
+        expect(dealer).to receive(:draw).with(deck).and_call_original.once
+        black_jack.dealer_action(deck, dealer)
       end
     end
   end

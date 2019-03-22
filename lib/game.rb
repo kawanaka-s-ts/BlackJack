@@ -24,9 +24,9 @@ class Game < BlackJack
       return puts "バーストしました、敗北です" if burst?(player.hand_cards)
     end
     puts "勝負します"
-    dealer.dealer_action(deck)
+    dealer_action(deck, dealer)
     puts "ディーラーの手札は #{dealer.show_hand_cards} でした"
-    puts "ディーラーの得点は #{total_score(player.hand_cards)} です" 
+    puts "ディーラーの得点は #{total_score(dealer.hand_cards)} です" 
     return puts "ディーラーがバーストしました、勝利です" if burst?(dealer.hand_cards) 
     puts "プレイヤーの合計は #{total_score(player.hand_cards)} です ディーラーの合計は #{total_score(dealer.hand_cards)} です"
     puts "#{decision(player, dealer)}です"
