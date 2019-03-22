@@ -33,4 +33,6 @@ class Game < BlackJack
   end
 end
 
-Game.new.play_game
+if __FILE__ == $0
+  Game.new.play_game
+end
