@@ -19,7 +19,6 @@ class Game < BlackJack
     puts "ディーラーの手札の1枚目は #{dealer.show_first_card} です"
     puts "プレイヤーの番です"
     while player.action(deck)
-      break if false
       puts "プレイヤーの得点は #{total_score(player.hand_cards)} です"
       return puts "バーストしました、敗北です" if burst?(player.hand_cards)
     end
