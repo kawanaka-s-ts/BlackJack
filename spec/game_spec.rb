@@ -121,6 +121,67 @@ describe Game do
         game.play_game
       end
     end
+
+    context "playerの手札が21にだった場合" do
+      before do
+        game.player.instance_variable_set(:@hand_cards, [Card.new("♠", "A"), Card.new("♠", "J")])
+        game.dealer.instance_variable_set(:@hand_cards, [Card.new("♠", "4"), Card.new("♠", "5")])
+      end
+      it "勝利ですと表示する" do
+        game.deck.instance_variable_set(:@cards, [Card.new("♠", "8"), Card.new("♠", "Q")])
+        allow(STDIN).to receive(:gets).and_return "y"
+        expect(STDOUT).to receive(:puts).with("ゲームを開始します")
+        expect(STDOUT).to receive(:puts).with("プレイヤーの手札は ♠A , ♠J です")
+        expect(STDOUT).to receive(:puts).with("プレイヤーの得点は 21 です")
+        expect(STDOUT).to receive(:puts).with("プレイヤーはブラックジャックです")
+        expect(STDOUT).to receive(:puts).with("ディーラーの手札は ♠4 , ♠5 でした")
+        expect(STDOUT).to receive(:puts).with("ディーラーの得点は 9 です")
+        expect(STDOUT).to receive(:puts).with("勝利です")
+        game.play_game
+      end
+    end
+
+    context "dealerの手札が21だった場合" do
+      before do
+        game.player.instance_variable_set(:@hand_cards, [Card.new("♠", "2"), Card.new("♠", "3")])
+        game.dealer.instance_variable_set(:@hand_cards, [Card.new("♠", "A"), Card.new("♠", "J")])
+      end
+      it "敗北ですと表示する" do
+        game.deck.instance_variable_set(:@cards, [Card.new("♠", "7"), Card.new("♣︎", "5")])
+        allow(STDIN).to receive(:gets).and_return "n"
+        expect(STDOUT).to receive(:puts).with("ゲームを開始します")
+        expect(STDOUT).to receive(:puts).with("プレイヤーの手札は ♠2 , ♠3 です")
+        expect(STDOUT).to receive(:puts).with("プレイヤーの得点は 5 です")
+        expect(STDOUT).to receive(:puts).with("ディーラーの手札の1枚目は ♠A です")
+        expect(STDOUT).to receive(:puts).with("プレイヤーの番です")
+        expect(STDOUT).to receive(:puts).with("ドローしますか? y/n")
+        expect(STDOUT).to receive(:puts).with("ドローしませんでした")
+        expect(STDOUT).to receive(:puts).with("勝負します")
+        expect(STDOUT).to receive(:puts).with("ディーラーの手札は ♠A , ♠J でした")
+        expect(STDOUT).to receive(:puts).with("ディーラーの得点は 21 です")
+        expect(STDOUT).to receive(:puts).with("ディーラーはブラックジャックです")
+        expect(STDOUT).to receive(:puts).with("敗北です")
+        game.play_game
+      end
+    end
+
+    context "どちらもブラックジャックだった時" do
+      before do
+        game.player.instance_variable_set(:@hand_cards, [Card.new("♠", "A"), Card.new("♠", "J")])
+        game.dealer.instance_variable_set(:@hand_cards, [Card.new("♣︎", "A"), Card.new("♣︎", "J")])
+      end
+      it "敗北ですと表示する" do
+        allow(STDIN).to receive(:gets).and_return "n"
+        expect(STDOUT).to receive(:puts).with("ゲームを開始します")
+        expect(STDOUT).to receive(:puts).with("プレイヤーの手札は ♠A , ♠J です")
+        expect(STDOUT).to receive(:puts).with("プレイヤーの得点は 21 です")
+        expect(STDOUT).to receive(:puts).with("ディーラーの手札は ♣︎A , ♣︎J でした")
+        expect(STDOUT).to receive(:puts).with("ディーラーの得点は 21 です")
+        expect(STDOUT).to receive(:puts).with("どちらもブラックジャックです")
+        expect(STDOUT).to receive(:puts).with("敗北です")
+        game.play_game
+      end
+    end
   end
 end
 

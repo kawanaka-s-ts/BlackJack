@@ -46,6 +46,11 @@ class BlackJack
     total_score(cards) > 21
   end
 
+  # ブラックジャックかどうか確認する
+  def black_jack?(cards)
+    total_score(cards) == 21
+  end
+
   # 勝敗判定の実装
   def decision(player, dealer)
     player_score = total_score(player.hand_cards)
