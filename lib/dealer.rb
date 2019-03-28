@@ -11,8 +11,6 @@ class Dealer < UserBase
   def show_first_card
     # cardは手札の1枚目
     card = hand_cards[0]
-    suit = card.suit
-    rank = card.rank
-    ("#{suit}#{rank}")
+    card.display
   end
 end

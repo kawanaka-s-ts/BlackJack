@@ -15,4 +15,10 @@ describe Card do
       expect(card.rank).to eq "A"
     end
   end
+
+  describe "#display" do
+    it "カードのsuitとrankを表示する" do
+      expect(card.display).to eq "♠A"
+    end
+  end
 end

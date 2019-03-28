@@ -15,12 +15,7 @@ class UserBase
   def show_hand_cards
     # 手札の要素数分、繰り返す
     hand_cards.map do |card|
-      # カードの柄を取得
-      suit = card.suit
-      # カードのランクを取得
-      rank = card.rank
-      # 柄とランクを足したものを格納
-      ("#{suit}#{rank}")
+      card.display
     end
     .join(" , ")
   end
