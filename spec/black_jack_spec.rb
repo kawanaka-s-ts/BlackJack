@@ -25,6 +25,27 @@ describe BlackJack do
         is_expected.to eq 15
       end
     end
+
+    context "手札にAが2枚ある場合" do
+      let(:cards) {  [Card.new("♠", "A"), Card.new("♠", "A")] }
+      it "12を返す" do
+        is_expected.to eq 12
+      end
+    end
+
+    context "手札にAが3枚ある場合" do
+      let(:cards) {  [Card.new("♠", "A"), Card.new("♠", "A"), Card.new("♠", "A")] }
+      it "3を返す" do
+        is_expected.to eq 13
+      end
+    end
+
+    context "手札にAが2枚あり、合計得点が21になる場合" do
+      let(:cards) {  [Card.new("♠", "A"), Card.new("♠", "A"), Card.new("♠", "9")] }
+      it "21を返す" do
+        is_expected.to eq 21
+      end
+    end
   end
 
   describe "#ace_count" do

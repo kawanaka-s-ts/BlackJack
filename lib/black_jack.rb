@@ -2,31 +2,46 @@ class BlackJack
 
   # 手札カードの数字を得点に変換
   def total_score(cards)
-    total = []
+    # 得点を入れる配列
+    score = []
     # 手札の要素を合計する
     cards.each do |card|
       case card.rank
       # rankが"J", "Q", "K"の時
       when "J", "Q", "K"
         # 10として扱う
-        total.push(10)
+        score.push(10)
       # rankが"A"の時
       when "A"
         # 11として扱う
-        total.push(11)
+        score.push(11)
       # 上記以外の場合
       else 
         # rankを数値にする
-        total.push(card.rank.to_i)
+        score.push(card.rank.to_i)
       end
     end
+    # scoreの全要素を合計したものをtotal_scoreに代入する
+    total_score = score.sum
     # 合計が21を超えていた場合
-    if total.sum > 21
-      # 合計からAの数*10を引く
-      total.sum - ace_count(cards) * 10
+    if total_score > 21
+      # countにAの数を代入
+      count = ace_count(cards)
+      # カウントが0になるまで繰り返す
+      while count > 0
+        # もしtotal_scoreが21を下回ったら処理を終わる
+        break if total_score <= 21
+        # scoreを10減らす
+        total_score -= 10
+        # countを減らす
+        count -= 1
+      end
+      # 合計を返す
+      total_score
+    # 21を超えていなかった場合
     else
       # 合計をそのまま返す
-      total.sum
+      total_score
     end
   end
 
