@@ -8,9 +8,7 @@ require "spec_helper"
 describe BlackJack do
   let(:black_jack) { BlackJack.new }
   let(:player) { Player.new(Card.new("♠", "A"), Card.new("♠", "2")) }
-  let(:dealer) { Dealer.new(Card.new("♠", "A"), Card.new("♠", "2")) }
-  let(:deck) { Deck.new }
-  let(:dealer_cards) { [10, 10] }
+  let(:dealer) { Dealer.new }
 
   describe "#convert_score" do
     subject { black_jack.total_score(cards) }
@@ -91,7 +89,8 @@ describe BlackJack do
   describe "#dealer_action" do
 
     before do
-      deck.instance_variable_set(:@cards, [Card.new("♠", "4"), Card.new("♠", "5"), Card.new("♠", "3")])
+      dealer.instance_variable_set(:@hand_cards, [Card.new("♠", "A"), Card.new("♠", "2")])
+      dealer.deck.instance_variable_set(:@cards, [Card.new("♠", "4"), Card.new("♠", "5"), Card.new("♠", "3")])
     end
 
     context "1枚目を引くと17になる時" do

@@ -1,16 +1,22 @@
-require_relative "user_base"
+require_relative "player"
 
-class Dealer < UserBase
-  attr_accessor :hand_cards
+class Dealer < Player
+  attr_accessor :hand_cards, :deck
 
-  def initialize(first_card, second_card)
-    @hand_cards = [first_card, second_card]
+  # dealerは手札とデッキを持つ
+  def initialize
+    @deck = Deck.new
+    @hand_cards = @deck.cards.shift(2)
+  end
+
+  # カードを渡す
+  def deal(hand_cards)
+    hand_cards.push(deck.draw_card)
   end
 
   # 手札の一枚目のみを表示する
   def show_first_card
     # cardは手札の1枚目
-    card = hand_cards[0]
-    card.display
+    hand_cards[0].display
   end
 end
