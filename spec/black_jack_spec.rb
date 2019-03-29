@@ -95,8 +95,40 @@ describe BlackJack do
 
     context "1枚目を引くと17になる時" do
       it "１回のみドローする" do
-        expect(dealer).to receive(:draw).with(deck).and_call_original.once
-        black_jack.dealer_action(deck, dealer)
+        expect(dealer).to receive(:deal).with(dealer.hand_cards).and_call_original.once
+        black_jack.dealer_action(dealer)
+      end
+    end
+  end
+
+  describe "#player_action" do
+    context "yが入力された時" do
+      it "カードを引く" do
+        dealer.deck.instance_variable_set(:@cards, [Card.new("♠", "A")])
+        player.instance_variable_set(:@hand_cards, [])
+        allow(STDIN).to receive(:gets).and_return "y"
+        expect(STDOUT).to receive(:puts).with("ドローしますか? y/n")
+        expect(STDOUT).to receive(:puts).with("ドローします")
+        expect(STDOUT).to receive(:puts).with("現在の手札は ♠A です")
+        black_jack.player_action(dealer, player)
+      end
+    end
+
+    context "nが入力された時" do
+      it "カードを引く" do
+        allow(STDIN).to receive(:gets).and_return "n"
+        expect(STDOUT).to receive(:puts).with("ドローしますか? y/n")
+        expect(STDOUT).to receive(:puts).with("ドローしませんでした")
+        black_jack.player_action(dealer, player)
+      end
+    end
+
+    context "yが入力された時" do
+      it "カードを引く" do
+        allow(STDIN).to receive(:gets).and_return "a"
+        expect(STDOUT).to receive(:puts).with("ドローしますか? y/n")
+        expect(STDOUT).to receive(:puts).with("無効な文字列が入力されました、再度入力してください y/n")
+        black_jack.player_action(dealer, player)
       end
     end
   end

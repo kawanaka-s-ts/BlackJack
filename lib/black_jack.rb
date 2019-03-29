@@ -68,11 +68,36 @@ class BlackJack
   end
 
   # dealerの動作
-  def dealer_action(deck, dealer)
+  def dealer_action(dealer)
     cards = dealer.hand_cards
     # dealerの得点が17を超えるまで繰り返す
     while total_score(cards) < 17
-      dealer.draw(deck)
+      dealer.deal(dealer.hand_cards)
+    end
+  end
+
+  # プレーヤーの動作
+  def player_action(dealer, player)
+    puts "ドローしますか? y/n"
+    action = STDIN.gets.chomp
+    # 入力がyの時
+    if action == "y"
+      puts "ドローします"
+      # ドローする
+      dealer.deal(player.hand_cards)
+      puts "現在の手札は #{player.show_hand_cards} です"
+      # trueを返す
+      return true
+    # 入力がnの時
+    elsif action == "n"
+      puts "ドローしませんでした"
+      # falseを返す
+      return false
+    # 入力がyでもnでもない時
+    else
+      puts "無効な文字列が入力されました、再度入力してください y/n"
+      # trueを返す
+      return true
     end
   end
 end
