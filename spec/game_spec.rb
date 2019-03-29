@@ -15,7 +15,7 @@ describe Game do
 
     context "勝利する場合" do
       it "勝利ですと表示" do
-        game.deck.instance_variable_set(:@cards, [Card.new("♠", "6"), Card.new("♠", "8")])
+        game.dealer.deck.instance_variable_set(:@cards, [Card.new("♠", "6"), Card.new("♠", "8")])
         allow(STDIN).to receive(:gets).and_return "y", "n"
         expect(STDOUT).to receive(:puts).with("ゲームを開始します")
         expect(STDOUT).to receive(:puts).with("プレイヤーの手札は ♠A , ♠3 です")
@@ -39,7 +39,7 @@ describe Game do
 
     context "敗北する場合" do
       it "敗北ですと表示" do
-        game.deck.instance_variable_set(:@cards, [Card.new("♠", "8")])
+        game.dealer.deck.instance_variable_set(:@cards, [Card.new("♠", "8")])
         allow(STDIN).to receive(:gets).and_return "n"
         expect(STDOUT).to receive(:puts).with("ゲームを開始します")
         expect(STDOUT).to receive(:puts).with("プレイヤーの手札は ♠A , ♠3 です")
@@ -59,7 +59,7 @@ describe Game do
 
     context "引き分けする場合" do
       it "引き分けですと表示" do
-        game.deck.instance_variable_set(:@cards, [Card.new("♠", "6"), Card.new("♠", "7"), Card.new("♣︎", "4")])
+        game.dealer.deck.instance_variable_set(:@cards, [Card.new("♠", "6"), Card.new("♠", "7"), Card.new("♣︎", "4")])
         allow(STDIN).to receive(:gets).and_return "y", "n"
         expect(STDOUT).to receive(:puts).with("ゲームを開始します")
         expect(STDOUT).to receive(:puts).with("プレイヤーの手札は ♠A , ♠3 です")
@@ -83,7 +83,7 @@ describe Game do
 
     context "playerがバーストする場合" do
       it "バーストしました、敗北ですと表示" do
-        game.deck.instance_variable_set(:@cards, [Card.new("♠", "J"), Card.new("♠", "Q")])
+        game.dealer.deck.instance_variable_set(:@cards, [Card.new("♠", "J"), Card.new("♠", "Q")])
         allow(STDIN).to receive(:gets).and_return "y", "y"
         expect(STDOUT).to receive(:puts).with("ゲームを開始します")
         expect(STDOUT).to receive(:puts).with("プレイヤーの手札は ♠A , ♠3 です")
@@ -105,7 +105,7 @@ describe Game do
 
     context "dealerがバーストする場合" do
       it "ディーラーがバーストしました、勝利ですと表示" do
-        game.deck.instance_variable_set(:@cards, [Card.new("♠", "7"), Card.new("♠", "Q")])
+        game.dealer.deck.instance_variable_set(:@cards, [Card.new("♠", "7"), Card.new("♠", "Q")])
         allow(STDIN).to receive(:gets).and_return "n"
         expect(STDOUT).to receive(:puts).with("ゲームを開始します")
         expect(STDOUT).to receive(:puts).with("プレイヤーの手札は ♠A , ♠3 です")
@@ -128,7 +128,7 @@ describe Game do
         game.dealer.instance_variable_set(:@hand_cards, [Card.new("♠", "4"), Card.new("♠", "5")])
       end
       it "勝利ですと表示する" do
-        game.deck.instance_variable_set(:@cards, [Card.new("♠", "8"), Card.new("♠", "Q")])
+        game.dealer.deck.instance_variable_set(:@cards, [Card.new("♠", "8"), Card.new("♠", "Q")])
         allow(STDIN).to receive(:gets).and_return "y"
         expect(STDOUT).to receive(:puts).with("ゲームを開始します")
         expect(STDOUT).to receive(:puts).with("プレイヤーの手札は ♠A , ♠J です")
@@ -147,7 +147,7 @@ describe Game do
         game.dealer.instance_variable_set(:@hand_cards, [Card.new("♠", "A"), Card.new("♠", "J")])
       end
       it "敗北ですと表示する" do
-        game.deck.instance_variable_set(:@cards, [Card.new("♠", "7"), Card.new("♣︎", "5")])
+        game.dealer.deck.instance_variable_set(:@cards, [Card.new("♠", "7"), Card.new("♣︎", "5")])
         allow(STDIN).to receive(:gets).and_return "n"
         expect(STDOUT).to receive(:puts).with("ゲームを開始します")
         expect(STDOUT).to receive(:puts).with("プレイヤーの手札は ♠2 , ♠3 です")
