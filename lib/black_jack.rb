@@ -57,13 +57,13 @@ class BlackJack
   end
 
   # バーストしたかを確認する
-  def burst?(cards)
-    total_score(cards) > 21
+  def burst?(score)
+    score > 21
   end
 
   # ブラックジャックかどうか確認する
-  def black_jack?(cards)
-    total_score(cards) == 21
+  def black_jack?(score)
+    score == 21
   end
 
   # 勝敗判定の実装

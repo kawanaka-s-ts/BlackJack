@@ -58,24 +58,25 @@ describe BlackJack do
   end
 
   describe "#burst?" do
+    subject { black_jack.burst?(black_jack.total_score(cards)) }
     context "21を超える場合" do
       let(:cards) { [Card.new("♠", "10"), Card.new("♠", "5"), Card.new("♠", "7")] }
       it "trueを返す" do
-        expect(black_jack.burst?(cards)).to eq true
+        is_expected.to eq true
       end
     end
 
     context "21を超えない場合" do
       let(:cards) { [Card.new("♠", "10"), Card.new("♠", "5"), Card.new("♠", "6")] }
       it "falseを返す" do
-        expect(black_jack.burst?(cards)).to eq false
+        is_expected.to eq false
       end
     end
 
     context "21を超えるが手札にAがある時" do
       let(:cards) { [Card.new("♠", "A"), Card.new("♠", "5"), Card.new("♠", "6")] }
-      it "trueを返す" do
-        expect(black_jack.burst?(cards)).to eq false
+      it "falseを返す" do
+        is_expected.to eq false
       end
     end
   end
